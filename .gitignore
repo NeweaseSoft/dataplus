@@ -1,17 +1,9 @@
 # Compiled class file
+target/
 *.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
+# Package Files
+#*.jar
 *.war
 *.nar
 *.ear
@@ -19,5 +11,49 @@
 *.tar.gz
 *.rar
 
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# Log file
+*.log
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# hprof
+*.hprof
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# eclipse ignore
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# system ignore
+.DS_Store
+Thumbs.db
