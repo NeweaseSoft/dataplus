@@ -10,6 +10,7 @@
 
     <modules>
         <module>dataplus-gateway</module>
+        <module>dataplus-datasource</module>
     </modules>
 
     <properties>
