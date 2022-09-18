@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>dataplus-common</module>
         <module>dataplus-gateway</module>
         <module>dataplus-datasource</module>
     </modules>
