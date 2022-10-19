@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        name: application.properties
+        group: DEFAULT_GROUP
+        server-addr: 192.168.169.128:8848
+        extension-configs:
+          - dataId: application.properties
+            group: group_01
+            refresh: false
