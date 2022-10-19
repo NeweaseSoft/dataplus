@@ -14,9 +14,13 @@ ij_any_line_comment_add_space = true
 ij_any_line_comment_add_space_on_reformat = true
 ij_any_block_comment_at_first_column = false
 ij_any_block_comment_add_space = true
+ij_formatter_tags_enabled = true
 
 [*.properties]
 ij_properties_keep_blank_lines = true
+
+[{*.yml, *.yaml}]
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
