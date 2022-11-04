@@ -8,7 +8,7 @@
     <!-- 定义日志文件路径 -->
     <property name="LOG_PATH" value="./logs"/>
     <!-- 定义日志文件名称 -->
-    <property name="LOG_NAME" value="dataplus-datasource"/>
+    <springProperty scope="context" name="LOG_NAME" source="spring.application.name" defaultValue="dataplus"/>
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
