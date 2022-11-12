@@ -44,16 +44,16 @@
         </dependency>
 
         <!-- Sentinel 限流 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Seata 分布式事务 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Lombok -->
         <dependency>
