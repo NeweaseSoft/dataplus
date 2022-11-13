@@ -32,16 +32,16 @@
         </dependency>
 
         <!-- Nacos 注册中心 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Nacos 配置中心 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- Sentinel 限流 -->
         <!-- <dependency>
