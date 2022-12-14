@@ -10,7 +10,6 @@
 
     <modules>
         <module>dataplus-framework</module>
-        <module>dataplus-common</module>
         <module>dataplus-gateway</module>
         <module>dataplus-datasource</module>
         <module>dataplus-module</module>
