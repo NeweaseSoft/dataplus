@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.datasource;
+package com.neweasesoft.dataplus.module.datasource;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

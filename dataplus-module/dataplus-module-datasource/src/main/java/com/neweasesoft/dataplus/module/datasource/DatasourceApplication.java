@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.datasource;
+package com.neweasesoft.dataplus.module.datasource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

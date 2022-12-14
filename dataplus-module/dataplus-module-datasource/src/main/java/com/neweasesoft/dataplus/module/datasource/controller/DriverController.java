@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.datasource.controller;
+package com.neweasesoft.dataplus.module.datasource.controller;
 
 import org.springframework.stereotype.Controller;
 

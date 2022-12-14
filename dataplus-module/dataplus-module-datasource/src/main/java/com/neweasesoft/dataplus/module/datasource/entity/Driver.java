@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.datasource.entity;
+package com.neweasesoft.dataplus.module.datasource.entity;
 
 import lombok.Data;
 

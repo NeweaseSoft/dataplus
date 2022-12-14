@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.metadata;
+package com.neweasesoft.dataplus.module.metadata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
