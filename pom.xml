@@ -13,6 +13,7 @@
         <module>dataplus-common</module>
         <module>dataplus-gateway</module>
         <module>dataplus-datasource</module>
+        <module>dataplus-module</module>
     </modules>
 
     <properties>
