@@ -5,17 +5,10 @@
 
     <parent>
         <groupId>com.neweasesoft</groupId>
-        <artifactId>dataplus</artifactId>
+        <artifactId>dataplus-framework</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>dataplus-framework</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>dataplus-framework-common</module>
-        <module>dataplus-framework-starter-profile</module>
-        <module>dataplus-framework-starter-banner</module>
-    </modules>
+    <artifactId>dataplus-framework-starter-profile</artifactId>
 
 </project>
