@@ -5,16 +5,19 @@
 
     <parent>
         <groupId>com.neweasesoft</groupId>
-        <artifactId>dataplus</artifactId>
+        <artifactId>dataplus-framework</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>dataplus-framework</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>dataplus-framework-starter-banner</artifactId>
 
-    <modules>
-        <module>dataplus-framework-common</module>
-        <module>dataplus-framework-starter-banner</module>
-    </modules>
+    <dependencies>
+        <!-- Dataplus Framework Common -->
+        <dependency>
+            <groupId>com.neweasesoft</groupId>
+            <artifactId>dataplus-framework-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
