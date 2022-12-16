@@ -15,7 +15,6 @@
     <modules>
         <module>dataplus-framework-common</module>
         <module>dataplus-framework-starter-profile</module>
-        <module>dataplus-framework-starter-banner</module>
         <module>dataplus-framework-starter-mybatis</module>
     </modules>
 
