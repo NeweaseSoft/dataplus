@@ -3,6 +3,7 @@ package com.neweasesoft.dataplus.framework.mybatis.config;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,12 +11,11 @@ import org.springframework.context.annotation.Configuration;
  * Mybatis配置类
  */
 @Configuration
+@MapperScan("com.neweasesoft.dataplus.module.*.mapper")
 public class MybatisConfig {
 
     /**
-     * 设置拦截器, 如: 分页连接器
-     *
-     * @return
+     * 设置 Mybatis-Plus 拦截器, 如: 分页拦截器
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
