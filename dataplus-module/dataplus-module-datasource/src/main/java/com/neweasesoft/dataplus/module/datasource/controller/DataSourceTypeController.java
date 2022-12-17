@@ -21,7 +21,7 @@ public class DataSourceTypeController {
 
     @GetMapping("/list")
     public Object list() {
-        List<DataSourceType> list = dataSourceTypeService.selectList();
+        List<DataSourceType> list = dataSourceTypeService.list();
         return list;
     }
 }
