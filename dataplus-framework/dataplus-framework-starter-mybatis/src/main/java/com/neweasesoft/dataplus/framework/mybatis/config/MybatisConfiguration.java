@@ -1,8 +1,10 @@
 package com.neweasesoft.dataplus.framework.mybatis.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.neweasesoft.dataplus.framework.mybatis.handler.DefaultMetaObjectHandler;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +24,13 @@ public class MybatisConfiguration {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
+    }
+
+    /**
+     * 数据持久化时, 公共字段默认的更新机制
+     */
+    @Bean
+    public MetaObjectHandler defaultMetaObjectHandler() {
+        return new DefaultMetaObjectHandler();
     }
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 数据持久化时, 通用字段默认填充数据的处理机制
+ * 数据持久化时, 公共字段默认的更新机制
  */
 public class DefaultMetaObjectHandler implements MetaObjectHandler {
 
