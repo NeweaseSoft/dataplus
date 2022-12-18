@@ -14,22 +14,10 @@ public class DefaultMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
+        // 判断新增对象是否为空, 且类型是否正确
         if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BaseEntity) {
             // 获取当前操作数据
-            BaseEntity baseEntity = (BaseEntity) metaObject.getOriginalObject();
-
-            // 获取当前系统时间
-            Date current = new Date();
-
-            // 如果创建时间为空, 则使用当前时间填充
-            if (Objects.isNull(baseEntity.getCreateTime())) {
-                baseEntity.setCreateTime(current);
-            }
-
-            // 如果更新时间为空, 则使用当前时间填充
-            if (Objects.isNull(baseEntity.getUpdateTime())) {
-                baseEntity.setUpdateTime(current);
-            }
+            BaseEntity<?> baseEntity = (BaseEntity<?>) metaObject.getOriginalObject();
 
             // 获取当前登录用户的Id
             String userId = null;
@@ -43,22 +31,51 @@ public class DefaultMetaObjectHandler implements MetaObjectHandler {
             if (Objects.nonNull(userId) && Objects.isNull(baseEntity.getUpdateBy())) {
                 baseEntity.setUpdateBy(userId);
             }
+
+            // 获取当前系统时间
+            Date date = new Date();
+
+            // 如果创建时间为空, 则使用当前时间填充
+            if (Objects.isNull(baseEntity.getCreateTime())) {
+                baseEntity.setCreateTime(date);
+            }
+
+            // 如果更新时间为空, 则使用当前时间填充
+            if (Objects.isNull(baseEntity.getUpdateTime())) {
+                baseEntity.setUpdateTime(date);
+            }
         }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        // 如果更新时间为空, 则使用当前时间填充
-        Object updateTime = getFieldValByName("updateTime", metaObject);
-        if (Objects.isNull(updateTime)) {
-            setFieldValByName("updateTime", new Date(), metaObject);
+        // 判断更新对象是否为空
+        if (Objects.isNull(metaObject)) {
+            return;
         }
 
-        // 如果更新人为空, 则使用当前登录用户的Id填充
-        Object updateBy = getFieldValByName("updateBy", metaObject);
+        // 获取当前登录用户的Id
         String userId = null;
-        if (Objects.nonNull(userId) && Objects.isNull(updateBy)) {
+
+        // 获取当前系统时间
+        Date date = new Date();
+
+        if (metaObject.hasGetter("isForceUpdateFill") && (boolean) getFieldValByName("isForceUpdateFill", metaObject)) {
+            // 强制更新
             setFieldValByName("updateBy", userId, metaObject);
+            setFieldValByName("updateTime", date, metaObject);
+        } else {
+            // 如果更新人为空, 则使用当前登录用户的Id填充
+            Object updateBy = getFieldValByName("updateBy", metaObject);
+            if (Objects.nonNull(userId) && Objects.isNull(updateBy)) {
+                setFieldValByName("updateBy", userId, metaObject);
+            }
+
+            // 如果更新时间为空, 则使用当前时间填充
+            Object updateTime = getFieldValByName("updateTime", metaObject);
+            if (Objects.isNull(updateTime)) {
+                setFieldValByName("updateTime", date, metaObject);
+            }
         }
     }
 }

@@ -24,4 +24,21 @@ public class DataSourceTypeController {
         List<DataSourceType> list = dataSourceTypeService.list();
         return list;
     }
+
+    @GetMapping("/save")
+    public boolean save() {
+        return dataSourceTypeService.save((DataSourceType) new DataSourceType().setName("张三").setRemark("test"));
+    }
+
+    @GetMapping("/update")
+    public boolean update(String id) {
+        DataSourceType dataSourceType = dataSourceTypeService.getById(id);
+        dataSourceType.setName("李四").setRemark("test");
+        return dataSourceTypeService.updateById(dataSourceType);
+    }
+
+    @GetMapping("/delete")
+    public boolean delete(String id) {
+        return dataSourceTypeService.removeById(id);
+    }
 }

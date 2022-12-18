@@ -2,20 +2,35 @@ package com.neweasesoft.dataplus.framework.mybatis.base;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.neweasesoft.dataplus.framework.common.base.BaseObject;
-import lombok.Getter;
-import lombok.Setter;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.Date;
 
 /**
- * 基础实体类
+ * 实体表基类
  */
-@Getter
-@Setter
-public class BaseEntity extends BaseObject {
+@Data
+public class BaseEntity<T extends Model<?>> extends Model<T> {
+
+    /**
+     * 主键Id
+     * <p>
+     * 生成策略:
+     * AUTO: 自增长
+     * NONE: 未定义
+     * INPUT: 用户输入
+     * ASSIGN_ID: 雪花算法 (默认)
+     * ASSIGN_UUID: 剔除中划线的UUID
+     */
+    @TableId
+    private String id;
+
+    @TableField
+    private String remark;
 
     /**
      * 创建人
@@ -44,6 +59,16 @@ public class BaseEntity extends BaseObject {
     /**
      * 是否删除
      */
-    @TableLogic
-    private Boolean isDeleted;
+    @TableLogic(value = "0", delval = "1")
+    private boolean isDeleted;
+
+    /**
+     * 更新时是否强制更新公共字段, 默认是
+     * <p>
+     * true: 调用 Mybatis-Plus 的更新方法时, 用当前登录人Id和当前时间强制更新 entity 的 update_by 和 update_time 属性
+     * <p>
+     * false: 调用 Mybatis-Plus 的更新方法时, 如果 entity 的 update_by 和 update_time 属性有值, 则直接使用. 如果没有值, 则使用当前登录人Id和当前时间填充
+     */
+    @TableField(exist = false)
+    private boolean isForceUpdateFill = true;
 }

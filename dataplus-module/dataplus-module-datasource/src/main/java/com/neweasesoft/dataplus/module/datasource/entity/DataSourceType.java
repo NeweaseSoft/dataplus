@@ -2,17 +2,14 @@ package com.neweasesoft.dataplus.module.datasource.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.neweasesoft.dataplus.framework.mybatis.base.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * 数据源类型 Entity
  */
-@Getter
-@Setter
+@Data
 @TableName("data_source_type")
-public class DataSourceType extends BaseEntity {
+public class DataSourceType extends BaseEntity<DataSourceType> {
 
-    private String id;
     private String name;
 }
