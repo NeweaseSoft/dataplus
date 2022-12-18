@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @MapperScan("com.neweasesoft.dataplus.module.*.mapper")
-public class MybatisConfig {
+public class MybatisConfiguration {
 
     /**
      * 设置 Mybatis-Plus 拦截器, 如: 分页拦截器
