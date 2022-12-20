@@ -60,7 +60,7 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
      * 是否删除
      */
     @TableLogic(value = "0", delval = "1")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
     /**
      * 更新时是否强制更新公共字段, 默认是
@@ -70,5 +70,5 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
      * false: 调用 Mybatis-Plus 的更新方法时, 如果 entity 的 update_by 和 update_time 属性有值, 则直接使用. 如果没有值, 则使用当前登录人Id和当前时间填充
      */
     @TableField(exist = false)
-    private boolean isForceUpdateFill = true;
+    private Boolean isForceUpdateFill = true;
 }
