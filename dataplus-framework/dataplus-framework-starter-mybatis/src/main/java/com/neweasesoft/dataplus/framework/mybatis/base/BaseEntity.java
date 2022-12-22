@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
-import org.apache.ibatis.type.JdbcType;
 
 import java.util.Date;
 
@@ -35,7 +34,7 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
     /**
      * 创建人
      */
-    @TableField(fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
+    @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
     /**
@@ -47,7 +46,7 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
     /**
      * 最后更新人
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
     /**
@@ -60,7 +59,7 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
      * 是否删除
      */
     @TableLogic(value = "0", delval = "1")
-    private Boolean isDeleted;
+    private boolean isDeleted;
 
     /**
      * 更新时是否强制更新公共字段, 默认是
@@ -70,5 +69,5 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
      * false: 调用 Mybatis-Plus 的更新方法时, 如果 entity 的 update_by 和 update_time 属性有值, 则直接使用. 如果没有值, 则使用当前登录人Id和当前时间填充
      */
     @TableField(exist = false)
-    private Boolean isForceUpdateFill = true;
+    private boolean isForceUpdateFill = true;
 }
