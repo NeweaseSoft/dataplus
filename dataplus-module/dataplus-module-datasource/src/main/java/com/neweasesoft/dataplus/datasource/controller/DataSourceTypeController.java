@@ -1,7 +1,7 @@
-package com.neweasesoft.dataplus.module.datasource.controller;
+package com.neweasesoft.dataplus.datasource.controller;
 
-import com.neweasesoft.dataplus.module.datasource.entity.DataSourceType;
-import com.neweasesoft.dataplus.module.datasource.service.DataSourceTypeService;
+import com.neweasesoft.dataplus.datasource.entity.DataSourceType;
+import com.neweasesoft.dataplus.datasource.service.DataSourceTypeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

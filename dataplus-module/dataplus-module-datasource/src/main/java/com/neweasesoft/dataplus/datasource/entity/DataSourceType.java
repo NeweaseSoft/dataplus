@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.module.datasource.entity;
+package com.neweasesoft.dataplus.datasource.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.neweasesoft.dataplus.framework.mybatis.base.BaseEntity;

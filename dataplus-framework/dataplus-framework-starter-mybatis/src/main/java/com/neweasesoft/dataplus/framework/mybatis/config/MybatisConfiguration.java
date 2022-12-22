@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * Mybatis配置类
  */
 @Configuration
-@MapperScan("com.neweasesoft.dataplus.module.*.mapper")
+@MapperScan("com.neweasesoft.dataplus.**.mapper")
 public class MybatisConfiguration {
 
     /**
