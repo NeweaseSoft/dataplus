@@ -67,7 +67,7 @@ public class DefaultMetaObjectHandler implements MetaObjectHandler {
         } else {
             // 如果更新人为空, 则使用当前登录用户的Id填充
             Object updateBy = getFieldValByName("updateBy", metaObject);
-            if (Objects.nonNull(userId) && Objects.isNull(updateBy)) {
+            if (Objects.isNull(updateBy) && Objects.nonNull(userId)) {
                 setFieldValByName("updateBy", userId, metaObject);
             }
 

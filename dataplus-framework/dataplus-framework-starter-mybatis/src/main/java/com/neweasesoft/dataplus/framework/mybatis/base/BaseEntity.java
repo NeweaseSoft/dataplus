@@ -19,15 +19,18 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
      * 主键Id
      * <p>
      * 生成策略:
-     * AUTO: 自增长
-     * NONE: 未定义
-     * INPUT: 用户输入
-     * ASSIGN_ID: 雪花算法 (默认)
-     * ASSIGN_UUID: 剔除中划线的UUID
+     * <p>AUTO: 自增长</p>
+     * <p>NONE: 未定义</p>
+     * <p>INPUT: 用户输入</p>
+     * <p>ASSIGN_ID: 雪花算法 (Mybatis-Plus默认生成策略)</p>
+     * <p>ASSIGN_UUID: 剔除中划线的UUID</p>
      */
     @TableId
     private String id;
 
+    /**
+     * 备注, 描述信息
+     */
     @TableField
     private String remark;
 
@@ -56,18 +59,14 @@ public class BaseEntity<T extends Model<?>> extends Model<T> {
     private Date updateTime;
 
     /**
-     * 是否删除
+     * 是否已被删除, 默认否
      */
     @TableLogic(value = "0", delval = "1")
-    private boolean isDeleted;
+    private Boolean isDeleted = false;
 
     /**
      * 更新时是否强制更新公共字段, 默认是
-     * <p>
-     * true: 调用 Mybatis-Plus 的更新方法时, 用当前登录人Id和当前时间强制更新 entity 的 update_by 和 update_time 属性
-     * <p>
-     * false: 调用 Mybatis-Plus 的更新方法时, 如果 entity 的 update_by 和 update_time 属性有值, 则直接使用. 如果没有值, 则使用当前登录人Id和当前时间填充
      */
     @TableField(exist = false)
-    private boolean isForceUpdateFill = true;
+    private Boolean isForceUpdateFill = true;
 }
