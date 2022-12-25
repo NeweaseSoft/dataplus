@@ -27,12 +27,6 @@
     </properties>
 
     <dependencies>
-        <!-- bootstrap启动器, Spring Boot 2.4之后调整了配置文件的加载顺序, 默认不再读取 bootstrap.properties 配置文件 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

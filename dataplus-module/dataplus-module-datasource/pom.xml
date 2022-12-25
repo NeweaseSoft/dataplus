@@ -12,7 +12,7 @@
     <artifactId>dataplus-module-datasource</artifactId>
 
     <dependencies>
-        <!-- Dataplus Framework -->
+        <!-- DataPlus Framework -->
         <dependency>
             <groupId>com.neweasesoft</groupId>
             <artifactId>dataplus-framework-common</artifactId>
