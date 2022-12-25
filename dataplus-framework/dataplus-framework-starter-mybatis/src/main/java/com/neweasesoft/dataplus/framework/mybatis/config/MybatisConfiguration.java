@@ -23,25 +23,7 @@ import javax.annotation.PostConstruct;
 public class MybatisConfiguration {
 
     /**
-     * 设置 Mybatis-Plus 拦截器, 如: 分页拦截器
-     */
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        return interceptor;
-    }
-
-    /**
-     * 数据持久化时, 公共字段默认的更新机制
-     */
-    @Bean
-    public MetaObjectHandler defaultMetaObjectHandler() {
-        return new DefaultMetaObjectHandler();
-    }
-
-    /**
-     * Mybatis 配置
+     * 全局 Mybatis 配置
      */
     @PostConstruct
     public org.apache.ibatis.session.Configuration configuration() {
@@ -51,7 +33,7 @@ public class MybatisConfiguration {
     }
 
     /**
-     * Mybatis Plus 配置
+     * 全局 Mybatis Plus 配置
      */
     @Bean
     @Primary
@@ -59,5 +41,23 @@ public class MybatisConfiguration {
         MybatisPlusProperties properties = new MybatisPlusProperties();
         properties.getGlobalConfig().setBanner(false); // 设置不输出banner
         return properties;
+    }
+
+    /**
+     * 配置插件
+     */
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL)); // 分页插件
+        return interceptor;
+    }
+
+    /**
+     * 数据持久化时, 公共字段默认的更新机制
+     */
+    @Bean
+    public MetaObjectHandler metaObjectHandler() {
+        return new DefaultMetaObjectHandler();
     }
 }

@@ -2,6 +2,8 @@ package com.neweasesoft.dataplus.framework.common.enums;
 
 /**
  * 数据源类型
+ *
+ * @author fushuwei
  */
 public enum DataSourceType {
     MySQL(10, "MySQL"),

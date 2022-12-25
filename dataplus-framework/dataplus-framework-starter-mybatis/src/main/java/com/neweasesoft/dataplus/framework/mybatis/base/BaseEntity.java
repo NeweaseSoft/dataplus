@@ -11,6 +11,8 @@ import java.util.Date;
 
 /**
  * 实体表基类
+ *
+ * @author fushuwei
  */
 @Data
 public class BaseEntity<T extends Model<?>> extends Model<T> {

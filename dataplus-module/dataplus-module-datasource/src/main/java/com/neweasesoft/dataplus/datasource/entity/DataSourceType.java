@@ -6,6 +6,8 @@ import lombok.Data;
 
 /**
  * 数据源类型 Entity
+ *
+ * @author fushuwei
  */
 @Data
 @TableName("data_source_type")

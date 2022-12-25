@@ -9,6 +9,8 @@ import java.util.Objects;
 
 /**
  * 数据持久化时, 公共字段默认的更新机制
+ *
+ * @author fushuwei
  */
 public class DefaultMetaObjectHandler implements MetaObjectHandler {
 

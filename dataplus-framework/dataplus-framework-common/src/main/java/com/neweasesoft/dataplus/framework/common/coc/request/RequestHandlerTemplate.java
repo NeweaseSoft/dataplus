@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Controller处理请求的通用模板
+ *
+ * @author fushuwei
  */
 public class RequestHandlerTemplate {
 

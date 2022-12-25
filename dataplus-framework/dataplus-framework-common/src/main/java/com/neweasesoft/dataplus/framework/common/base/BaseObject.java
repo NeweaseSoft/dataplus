@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * 基础类，重写了 java.lang.Object 类的两个方法，原则上建议所有java类都集成该类
+ *
+ * @author fushuwei
  */
 public class BaseObject {
 

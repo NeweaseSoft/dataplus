@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 
 /**
  * 项目启动完毕输出相关日志
+ *
+ * @author fushuwei
  */
 public class BannerApplicationRunner implements ApplicationRunner {
 

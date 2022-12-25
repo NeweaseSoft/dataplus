@@ -2,6 +2,8 @@ package com.neweasesoft.dataplus.framework.common.exception;
 
 /**
  * 错误代码接口
+ *
+ * @author fushuwei
  */
 public interface ErrorCode {
 

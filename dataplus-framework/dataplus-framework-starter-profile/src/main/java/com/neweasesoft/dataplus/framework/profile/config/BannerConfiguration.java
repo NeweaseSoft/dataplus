@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Banner自动配置类
+ *
+ * @author fushuwei
  */
 @Configuration
 public class BannerConfiguration {
