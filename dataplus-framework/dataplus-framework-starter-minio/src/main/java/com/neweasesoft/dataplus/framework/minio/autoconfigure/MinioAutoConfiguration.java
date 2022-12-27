@@ -94,13 +94,11 @@ public class MinioAutoConfiguration {
      * @return boolean
      */
     private boolean checkBucket(MinioClient minioClient) {
-        boolean isExists;
         try {
-            isExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(minioProperties.getBucketName()).build());
+            return minioClient.bucketExists(BucketExistsArgs.builder().bucket(minioProperties.getBucketName()).build());
         } catch (Exception e) {
             throw new RuntimeException("Bucket check Failed", e);
         }
-        return isExists;
     }
 
     /**
