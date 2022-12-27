@@ -7,17 +7,19 @@ import okhttp3.HttpUrl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * MinIO 配置类
+ * MinIO 自动配置类
  *
  * @author fushuwei
  */
 @Slf4j
 @Configuration
 @ConditionalOnClass(MinioClient.class)
+@EnableConfigurationProperties(MinioProperties.class)
 public class MinioAutoConfiguration {
 
     @Autowired
@@ -32,15 +34,15 @@ public class MinioAutoConfiguration {
 
         // 判断参数是否配置
         if (StringUtils.isBlank(minioProperties.getEndpoint())) {
-            logger.error("MinioClient initialization failed, because [\"{}\"] is null", minioProperties.getEndpoint());
+            logger.error("MinioClient initialization failed, because [\"endpoint\"] is null");
             return null;
         }
         if (StringUtils.isBlank(minioProperties.getAccessKey())) {
-            logger.error("MinioClient initialization failed, because [\"{}\"] is null", minioProperties.getAccessKey());
+            logger.error("MinioClient initialization failed, because [\"accessKey\"] is null");
             return null;
         }
         if (StringUtils.isBlank(minioProperties.getSecretKey())) {
-            logger.error("MinioClient initialization failed, because [\"{}\"] is null", minioProperties.getSecretKey());
+            logger.error("MinioClient initialization failed, because [\"secretKey\"] is null");
             return null;
         }
 
