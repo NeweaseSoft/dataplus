@@ -24,6 +24,7 @@
         <mybatis-spring-boot.version>2.2.2</mybatis-spring-boot.version>
         <mybatis-plus-boot.version>3.5.2</mybatis-plus-boot.version>
         <guava.version>31.1-jre</guava.version>
+        <minio.version>8.4.6</minio.version>
     </properties>
 
     <dependencies>
@@ -90,6 +91,13 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <!-- MinIO -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
