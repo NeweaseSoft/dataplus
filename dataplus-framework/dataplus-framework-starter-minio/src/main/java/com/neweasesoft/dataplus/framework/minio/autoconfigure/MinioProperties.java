@@ -44,7 +44,7 @@ public class MinioProperties {
     private String secretKey;
 
     /**
-     * MinIO 中桶的存储区域
+     * 存储桶的区域
      */
     private String region;
 
@@ -62,4 +62,19 @@ public class MinioProperties {
      * 设置读取超时时间, 单位毫秒, 默认0, 表示没有超时限制
      */
     private Long readTimeout = 0L;
+
+    /**
+     * 默认存储桶名称, 非必填
+     */
+    private String bucketName;
+
+    /**
+     * 启动时检查桶是否存在, 默认是, 该配置项仅在 bucketName 不为空时有效
+     */
+    private Boolean checkBucketIsExist = true;
+
+    /**
+     * 桶不存在时是否创建, 默认是, 该配置项仅在 bucketName 不为空时有效
+     */
+    private Boolean createBucketIfNotExist = true;
 }

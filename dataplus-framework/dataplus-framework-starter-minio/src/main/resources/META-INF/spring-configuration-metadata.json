@@ -1,0 +1,90 @@
+{
+  "groups": [
+    {
+      "name": "minio",
+      "type": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "minio.access-key",
+      "type": "java.lang.String",
+      "description": "账户",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.bucket-name",
+      "type": "java.lang.String",
+      "description": "默认存储桶名称, 非必填",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.check-bucket-is-exist",
+      "type": "java.lang.Boolean",
+      "description": "启动时检查桶是否存在, 默认是, 该配置项仅在 bucketName 不为空时有效",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.connect-timeout",
+      "type": "java.lang.Long",
+      "description": "设置连接超时时间, 单位毫秒, 默认0, 表示没有超时限制",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.create-bucket-if-not-exist",
+      "type": "java.lang.Boolean",
+      "description": "桶不存在时是否创建, 默认是, 该配置项仅在 bucketName 不为空时有效",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否启用 MinIO, 默认 true",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.endpoint",
+      "type": "java.lang.String",
+      "description": "MinIO IP地址",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.port",
+      "type": "java.lang.Integer",
+      "description": "MinIO 端口号, 默认是 9000 (注意: 这里的端口是 API 服务的端口, 不是 Console 服务的端口)",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.read-timeout",
+      "type": "java.lang.Long",
+      "description": "设置读取超时时间, 单位毫秒, 默认0, 表示没有超时限制",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.region",
+      "type": "java.lang.String",
+      "description": "存储桶的区域",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.secret-key",
+      "type": "java.lang.String",
+      "description": "密码",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.secure",
+      "type": "java.lang.Boolean",
+      "description": "是否用 HTTPS 访问, 默认否",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    },
+    {
+      "name": "minio.write-timeout",
+      "type": "java.lang.Long",
+      "description": "设置写入超时时间, 单位毫秒, 默认0, 表示没有超时限制",
+      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
+    }
+  ],
+  "hints": []
+}
