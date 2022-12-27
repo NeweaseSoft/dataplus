@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.framework.common.coc.response;
+package com.neweasesoft.dataplus.framework.common.coc.web;
 
 import lombok.Data;
 
@@ -28,4 +28,12 @@ public class Result<T> implements Serializable {
      * 响应数据
      */
     private T result;
+
+    public static <T> Result<T> ok(int code, String message, T data) {
+        Result<T> result = new Result<>();
+        result.setCode(code);
+        result.setMessage(message);
+        result.setResult(data);
+        return result;
+    }
 }
