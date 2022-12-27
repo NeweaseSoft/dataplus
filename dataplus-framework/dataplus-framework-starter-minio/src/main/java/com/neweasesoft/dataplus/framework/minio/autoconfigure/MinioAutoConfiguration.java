@@ -1,11 +1,12 @@
 package com.neweasesoft.dataplus.framework.minio.autoconfigure;
 
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
-import io.minio.http.HttpUtils;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,12 +18,12 @@ import org.springframework.context.annotation.Configuration;
  * @author fushuwei
  */
 @Slf4j
+@AllArgsConstructor
 @Configuration
 @ConditionalOnClass(MinioClient.class)
 @EnableConfigurationProperties(MinioProperties.class)
 public class MinioAutoConfiguration {
 
-    @Autowired
     private MinioProperties minioProperties;
 
     @Bean
@@ -46,13 +47,12 @@ public class MinioAutoConfiguration {
             return null;
         }
 
-        HttpUrl a = new HttpUrl.Builder().scheme(minioProperties.getSecure() ? "https" : "http").host(minioProperties.getEndpoint()).port(minioProperties.getPort()).build();
-
-        HttpUrl url = HttpUtils.getBaseUrl(minioProperties.getEndpoint());
-        url = url.newBuilder().port(minioProperties.getPort()).scheme(minioProperties.getSecure() ? "https" : "http").build();
-
-        logger.info("Initializing MinioClient [\"{}\"]", a);
-        logger.info("Initializing MinioClient [\"{}\"]", url);
+        // 输出 Initializing 日志
+        logger.info("Initializing MinioClient [\"{}\"]",
+            new HttpUrl.Builder()
+                .scheme(minioProperties.getSecure() ? "https" : "http")
+                .host(minioProperties.getEndpoint())
+                .port(minioProperties.getPort()).build());
 
         // 创建 MinioClient 构造器实例
         MinioClient.Builder minioClientBuilder = MinioClient.builder()
@@ -68,8 +68,51 @@ public class MinioAutoConfiguration {
         MinioClient minioClient = minioClientBuilder.build();
 
         // 设置超时时间
-        minioClient.setTimeout(minioProperties.getConnectTimeout(), minioProperties.getWriteTimeout(), minioProperties.getReadTimeout());
+        minioClient.setTimeout(
+            minioProperties.getConnectTimeout(),
+            minioProperties.getWriteTimeout(),
+            minioProperties.getReadTimeout());
 
+        // 检查桶是否存在
+        if (StringUtils.isNotBlank(minioProperties.getBucketName()) && minioProperties.getCheckBucketIsExists()) {
+            logger.info("Start to verify whether the bucket [\"{}\"] exists", minioProperties.getBucketName());
+            if (!checkBucket(minioClient) && minioProperties.getCreateBucketIfNotExists()) {
+                logger.info("The bucket [\"{}\"] is not exist, and creating now", minioProperties.getBucketName());
+                createBucket(minioClient);
+                logger.info("The bucket [\"{}\"] create success", minioProperties.getBucketName());
+            }
+        }
+
+        logger.info("MinioClient initialization completed");
         return minioClient;
+    }
+
+    /**
+     * 校验 Bucket 是否存在
+     *
+     * @param minioClient Minio连接客户端
+     * @return boolean
+     */
+    private boolean checkBucket(MinioClient minioClient) {
+        boolean isExists;
+        try {
+            isExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(minioProperties.getBucketName()).build());
+        } catch (Exception e) {
+            throw new RuntimeException("Bucket check Failed", e);
+        }
+        return isExists;
+    }
+
+    /**
+     * 创建 Bucket
+     *
+     * @param minioClient Minio连接客户端
+     */
+    private void createBucket(MinioClient minioClient) {
+        try {
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket(minioProperties.getBucketName()).build());
+        } catch (Exception e) {
+            throw new RuntimeException("Bucket create Failed", e);
+        }
     }
 }

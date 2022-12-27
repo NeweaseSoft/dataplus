@@ -71,10 +71,10 @@ public class MinioProperties {
     /**
      * 启动时检查桶是否存在, 默认是, 该配置项仅在 bucketName 不为空时有效
      */
-    private Boolean checkBucketIsExist = true;
+    private Boolean checkBucketIsExists = true;
 
     /**
      * 桶不存在时是否创建, 默认是, 该配置项仅在 bucketName 不为空时有效
      */
-    private Boolean createBucketIfNotExist = true;
+    private Boolean createBucketIfNotExists = true;
 }
