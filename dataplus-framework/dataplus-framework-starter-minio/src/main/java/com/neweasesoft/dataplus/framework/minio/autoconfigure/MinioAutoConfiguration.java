@@ -97,7 +97,7 @@ public class MinioAutoConfiguration {
         try {
             return minioClient.bucketExists(BucketExistsArgs.builder().bucket(minioProperties.getBucketName()).build());
         } catch (Exception e) {
-            throw new RuntimeException("Bucket check Failed", e);
+            throw new RuntimeException("Bucket check failed", e);
         }
     }
 
@@ -110,7 +110,7 @@ public class MinioAutoConfiguration {
         try {
             minioClient.makeBucket(MakeBucketArgs.builder().bucket(minioProperties.getBucketName()).build());
         } catch (Exception e) {
-            throw new RuntimeException("Bucket create Failed", e);
+            throw new RuntimeException("Bucket create failed", e);
         }
     }
 }
