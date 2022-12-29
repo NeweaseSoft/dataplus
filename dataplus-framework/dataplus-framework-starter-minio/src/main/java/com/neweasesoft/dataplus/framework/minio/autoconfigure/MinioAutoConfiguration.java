@@ -73,6 +73,9 @@ public class MinioAutoConfiguration {
             minioProperties.getWriteTimeout(),
             minioProperties.getReadTimeout());
 
+        // 测试连接
+        testConnection(minioClient);
+
         // 当指定了默认的桶, 则校验桶是否存在
         if (StringUtils.isNotBlank(minioProperties.getBucketName())) {
             logger.info("Start to verify whether the bucket [\"{}\"] exists", minioProperties.getBucketName());
@@ -85,6 +88,19 @@ public class MinioAutoConfiguration {
 
         logger.info("MinioClient initialization completed");
         return minioClient;
+    }
+
+    /**
+     * 测试连接
+     *
+     * @param minioClient Minio客户端
+     */
+    public void testConnection(MinioClient minioClient) {
+        try {
+            minioClient.listBuckets();
+        } catch (Exception e) {
+            throw new RuntimeException("Connection to MinIO failed, please check the minio configuration", e);
+        }
     }
 
     /**
