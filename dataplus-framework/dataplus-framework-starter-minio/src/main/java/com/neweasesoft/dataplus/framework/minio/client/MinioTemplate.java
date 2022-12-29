@@ -6,6 +6,7 @@ import io.minio.GetObjectArgs;
 import io.minio.ListObjectsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
 import io.minio.RemoveBucketArgs;
 import io.minio.Result;
 import io.minio.StatObjectArgs;
@@ -14,9 +15,13 @@ import io.minio.messages.Item;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
 
@@ -219,6 +224,202 @@ public class MinioTemplate {
             return new URL(url).openStream();
         } catch (Exception e) {
             throw new RuntimeException("获取对象失败", e);
+        }
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param file MultipartFile
+     */
+    public void putObject(MultipartFile file) {
+        putObject(file.getOriginalFilename(), file);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName 对象名称
+     * @param file       MultipartFile
+     */
+    public void putObject(String objectName, MultipartFile file) {
+        putObject(minioProperties.getBucketName(), objectName, file);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     * @param file       MultipartFile
+     */
+    public void putObject(String bucketName, String objectName, MultipartFile file) {
+        putObject(bucketName, objectName, file, null);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName  桶名称
+     * @param objectName  对象名称
+     * @param file        MultipartFile
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String bucketName, String objectName, MultipartFile file, String contentType) {
+        InputStream is;
+        try {
+            is = file.getInputStream();
+        } catch (Exception e) {
+            throw new RuntimeException("读取 MultipartFile 中的流失败", e);
+        }
+        putObject(bucketName, objectName, is, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName 对象名称
+     * @param file       File对象
+     */
+    public void putObject(String objectName, File file) {
+        putObject(minioProperties.getBucketName(), objectName, file);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     * @param file       File对象
+     */
+    public void putObject(String bucketName, String objectName, File file) {
+        putObject(bucketName, objectName, file, null);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName  对象名称
+     * @param file        File对象
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String objectName, File file, String contentType) {
+        putObject(minioProperties.getBucketName(), objectName, file, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName  桶名称
+     * @param objectName  对象名称
+     * @param file        File对象
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String bucketName, String objectName, File file, String contentType) {
+        InputStream is;
+        try {
+            is = Files.newInputStream(file.toPath());
+        } catch (Exception e) {
+            throw new RuntimeException("构造 FileInputStream 实例失败", e);
+        }
+        putObject(bucketName, objectName, is, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName 对象名称
+     * @param bytes      对象的byte数组
+     */
+    public void putObject(String objectName, byte[] bytes) {
+        putObject(minioProperties.getBucketName(), objectName, bytes);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     * @param bytes      对象的byte数组
+     */
+    public void putObject(String bucketName, String objectName, byte[] bytes) {
+        putObject(bucketName, objectName, bytes, null);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName  对象名称
+     * @param bytes       对象的byte数组
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String objectName, byte[] bytes, String contentType) {
+        putObject(minioProperties.getBucketName(), objectName, bytes, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName  桶名称
+     * @param objectName  对象名称
+     * @param bytes       对象的byte数组
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String bucketName, String objectName, byte[] bytes, String contentType) {
+        InputStream is = new ByteArrayInputStream(bytes);
+        putObject(bucketName, objectName, is, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName 对象名称
+     * @param is         对象的文件流
+     */
+    public void putObject(String objectName, InputStream is) {
+        putObject(minioProperties.getBucketName(), objectName, is);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     * @param is         对象的文件流
+     */
+    public void putObject(String bucketName, String objectName, InputStream is) {
+        putObject(bucketName, objectName, is, null);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param objectName  对象名称
+     * @param is          对象的文件流
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String objectName, InputStream is, String contentType) {
+        putObject(minioProperties.getBucketName(), objectName, is, contentType);
+    }
+
+    /**
+     * 创建对象
+     *
+     * @param bucketName  桶名称
+     * @param objectName  对象名称
+     * @param is          对象的文件流
+     * @param contentType 对象的内容类型, 参考: <a href="https://www.runoob.com/http/http-content-type.html">HTTP Content-Type</a>
+     */
+    public void putObject(String bucketName, String objectName, InputStream is, String contentType) {
+        try {
+            PutObjectArgs.Builder builder = PutObjectArgs.builder()
+                .bucket(bucketName).object(objectName).stream(is, is.available(), -1);
+            if (StringUtils.isNotBlank(contentType)) {
+                builder.contentType(contentType);
+            }
+            minioClient.putObject(builder.build());
+        } catch (Exception e) {
+            throw new RuntimeException("创建对象失败", e);
         }
     }
 }
