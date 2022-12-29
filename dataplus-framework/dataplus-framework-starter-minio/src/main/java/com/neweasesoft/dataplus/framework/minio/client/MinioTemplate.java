@@ -14,7 +14,6 @@ import io.minio.StatObjectArgs;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,7 +30,6 @@ import java.util.Optional;
  *
  * @author fushuwei
  */
-@Slf4j
 @AllArgsConstructor
 public class MinioTemplate {
 
@@ -157,7 +155,7 @@ public class MinioTemplate {
                 }
             }
         } catch (Exception e) {
-            logger.error("校验文件夹是否存在失败, 详情: {}", e.getMessage());
+            throw new RuntimeException("校验文件夹是否存在失败", e);
         }
         return false;
     }
@@ -184,9 +182,8 @@ public class MinioTemplate {
             minioClient.statObject(StatObjectArgs.builder().bucket(bucketName).object(fileName).build());
             return true;
         } catch (Exception e) {
-            logger.error("校验文件是否存在失败, 详情: {}", e.getMessage());
+            throw new RuntimeException("校验文件是否存在失败", e);
         }
-        return false;
     }
 
     /**
