@@ -28,6 +28,11 @@
             <artifactId>dataplus-framework-starter-mybatis</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.neweasesoft</groupId>
+            <artifactId>dataplus-framework-starter-minio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Spring Web -->
         <dependency>
