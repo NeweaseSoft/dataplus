@@ -73,8 +73,8 @@ public class MinioAutoConfiguration {
             minioProperties.getWriteTimeout(),
             minioProperties.getReadTimeout());
 
-        // 检查桶是否存在
-        if (StringUtils.isNotBlank(minioProperties.getBucketName()) && minioProperties.getCheckBucketIsExists()) {
+        // 当指定了默认的桶, 则校验桶是否存在
+        if (StringUtils.isNotBlank(minioProperties.getBucketName())) {
             logger.info("Start to verify whether the bucket [\"{}\"] exists", minioProperties.getBucketName());
             if (!checkBucket(minioClient) && minioProperties.getCreateBucketIfNotExists()) {
                 logger.info("The bucket [\"{}\"] is not exist, and creating now", minioProperties.getBucketName());
@@ -88,10 +88,10 @@ public class MinioAutoConfiguration {
     }
 
     /**
-     * 校验 Bucket 是否存在
+     * 校验桶是否存在
      *
-     * @param minioClient Minio连接客户端
-     * @return boolean
+     * @param minioClient Minio客户端
+     * @return true 存在, false 不存在
      */
     private boolean checkBucket(MinioClient minioClient) {
         try {
@@ -102,9 +102,9 @@ public class MinioAutoConfiguration {
     }
 
     /**
-     * 创建 Bucket
+     * 创建桶
      *
-     * @param minioClient Minio连接客户端
+     * @param minioClient Minio客户端
      */
     private void createBucket(MinioClient minioClient) {
         try {
