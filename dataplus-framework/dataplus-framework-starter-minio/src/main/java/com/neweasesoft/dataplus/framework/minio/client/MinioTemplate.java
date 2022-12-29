@@ -8,6 +8,7 @@ import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveBucketArgs;
+import io.minio.RemoveObjectArgs;
 import io.minio.Result;
 import io.minio.StatObjectArgs;
 import io.minio.messages.Bucket;
@@ -420,6 +421,29 @@ public class MinioTemplate {
             minioClient.putObject(builder.build());
         } catch (Exception e) {
             throw new RuntimeException("创建对象失败", e);
+        }
+    }
+
+    /**
+     * 删除对象
+     *
+     * @param objectName 对象名称
+     */
+    public void removeObject(String objectName) {
+        removeObject(minioProperties.getBucketName(), objectName);
+    }
+
+    /**
+     * 删除对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     */
+    public void removeObject(String bucketName, String objectName) {
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName).object(objectName).build());
+        } catch (Exception e) {
+            throw new RuntimeException("删除对象失败", e);
         }
     }
 }
