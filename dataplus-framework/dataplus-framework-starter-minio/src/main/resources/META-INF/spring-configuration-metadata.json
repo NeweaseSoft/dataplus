@@ -16,15 +16,8 @@
     {
       "name": "minio.bucket-name",
       "type": "java.lang.String",
-      "description": "默认存储桶名称, 非必填",
+      "description": "默认桶名称, 默认为空, 表示当前应用未指定默认使用的桶, 则在调用MinIO服务时需要显示指定桶名称",
       "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
-    },
-    {
-      "name": "minio.check-bucket-is-exists",
-      "type": "java.lang.Boolean",
-      "description": "启动时检查桶是否存在, 默认是, 该配置项仅在 bucketName 不为空时有效",
-      "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties",
-      "defaultValue": true
     },
     {
       "name": "minio.connect-timeout",
@@ -70,7 +63,7 @@
     {
       "name": "minio.region",
       "type": "java.lang.String",
-      "description": "存储桶的区域",
+      "description": "桶的存储区域",
       "sourceType": "com.neweasesoft.dataplus.framework.minio.autoconfigure.MinioProperties"
     },
     {
