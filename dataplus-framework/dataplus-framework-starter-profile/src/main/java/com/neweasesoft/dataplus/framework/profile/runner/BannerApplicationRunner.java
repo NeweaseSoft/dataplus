@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.framework.profile.core;
+package com.neweasesoft.dataplus.framework.profile.runner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

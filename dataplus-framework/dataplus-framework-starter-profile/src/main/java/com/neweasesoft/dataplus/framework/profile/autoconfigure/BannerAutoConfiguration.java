@@ -1,6 +1,6 @@
-package com.neweasesoft.dataplus.framework.profile.config;
+package com.neweasesoft.dataplus.framework.profile.autoconfigure;
 
-import com.neweasesoft.dataplus.framework.profile.core.BannerApplicationRunner;
+import com.neweasesoft.dataplus.framework.profile.runner.BannerApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author fushuwei
  */
 @Configuration
-public class BannerConfiguration {
+public class BannerAutoConfiguration {
 
     @Bean
     public BannerApplicationRunner bannerApplicationRunner() {

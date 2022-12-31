@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.neweasesoft.dataplus.framework.profile.config.BannerConfiguration
+  com.neweasesoft.dataplus.framework.profile.autoconfigure.BannerAutoConfiguration
