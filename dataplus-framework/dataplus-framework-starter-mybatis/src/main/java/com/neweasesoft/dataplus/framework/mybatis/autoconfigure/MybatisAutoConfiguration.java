@@ -28,7 +28,9 @@ public class MybatisAutoConfiguration {
     @Primary
     public MybatisProperties mybatisProperties() {
         MybatisProperties properties = new MybatisProperties();
-        properties.getConfiguration().setLogImpl(org.apache.ibatis.logging.slf4j.Slf4jImpl.class); // 设置输出SQL日志
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setLogImpl(org.apache.ibatis.logging.slf4j.Slf4jImpl.class);  // 设置输出SQL日志
+        properties.setConfiguration(configuration);
         return properties;
     }
 

@@ -95,7 +95,7 @@ public class MinioAutoConfiguration {
      *
      * @param minioClient Minio客户端
      */
-    public void testConnection(MinioClient minioClient) {
+    private void testConnection(MinioClient minioClient) {
         try {
             minioClient.listBuckets();
         } catch (Exception e) {
