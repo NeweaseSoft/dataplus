@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.framework.mybatis.config;
+package com.neweasesoft.dataplus.framework.mybatis.autoconfigure;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
@@ -20,7 +20,7 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 @MapperScan("com.neweasesoft.dataplus.**.mapper")
-public class MybatisConfiguration {
+public class MybatisAutoConfiguration {
 
     /**
      * 全局 Mybatis 配置
