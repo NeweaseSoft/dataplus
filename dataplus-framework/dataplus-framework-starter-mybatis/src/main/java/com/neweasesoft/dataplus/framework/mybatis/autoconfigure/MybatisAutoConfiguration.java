@@ -7,11 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.neweasesoft.dataplus.framework.mybatis.handler.DefaultMetaObjectHandler;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Mybatis 配置类
@@ -25,11 +24,12 @@ public class MybatisAutoConfiguration {
     /**
      * 全局 Mybatis 配置
      */
-    @PostConstruct
-    public org.apache.ibatis.session.Configuration configuration() {
-        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
-        configuration.setLogImpl(org.apache.ibatis.logging.slf4j.Slf4jImpl.class); // 设置输出SQL日志
-        return configuration;
+    @Bean
+    @Primary
+    public MybatisProperties mybatisProperties() {
+        MybatisProperties properties = new MybatisProperties();
+        properties.getConfiguration().setLogImpl(org.apache.ibatis.logging.slf4j.Slf4jImpl.class); // 设置输出SQL日志
+        return properties;
     }
 
     /**
