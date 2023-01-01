@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.neweasesoft.dataplus.framework.mybatis.autoconfigure.DataSourceAutoConfiguration,\
   com.neweasesoft.dataplus.framework.mybatis.autoconfigure.MybatisAutoConfiguration
