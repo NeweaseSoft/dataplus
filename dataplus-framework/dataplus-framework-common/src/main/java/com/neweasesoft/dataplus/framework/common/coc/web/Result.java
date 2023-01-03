@@ -1,11 +1,13 @@
 package com.neweasesoft.dataplus.framework.common.coc.web;
 
+import com.neweasesoft.dataplus.framework.common.i18n.MessageUtil;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * 响应数据封装类
@@ -42,7 +44,7 @@ public class Result<T> implements Serializable {
      * @return Result对象
      */
     public static <T> Result<T> ok(T data) {
-        return new Result<>(Status.OK.code, Status.OK.i18n, data);
+        return new Result<>(Status.OK.code, MessageUtil.getMessage(Status.OK.i18n, Locale.SIMPLIFIED_CHINESE), data);
     }
 
     /**
@@ -81,19 +83,19 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 响应通用结果
+     * 响应自定义结果
      *
      * @param status Status对象
      * @param data   返回值
      * @param <T>    泛型
      * @return Result对象
      */
-    public static <T> Result<T> back(Status status, T data) {
+    public static <T> Result<T> customize(Status status, T data) {
         return new Result<>(status.code, status.i18n, data);
     }
 
     /**
-     * 响应通用结果
+     * 响应自定义结果
      *
      * @param code    状态码
      * @param message 描述信息
@@ -101,7 +103,7 @@ public class Result<T> implements Serializable {
      * @param <T>     泛型
      * @return Result对象
      */
-    public static <T> Result<T> back(int code, String message, T data) {
+    public static <T> Result<T> customize(int code, String message, T data) {
         return new Result<>(code, message, data);
     }
 
@@ -145,7 +147,7 @@ public class Result<T> implements Serializable {
         if (data) {
             return ok(status.i18n, true);
         } else {
-            return back(status, false);
+            return customize(status, false);
         }
     }
 
@@ -161,7 +163,7 @@ public class Result<T> implements Serializable {
         if (data) {
             return ok(message, true);
         } else {
-            return back(code, message, false);
+            return customize(code, message, false);
         }
     }
 }
