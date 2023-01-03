@@ -25,7 +25,7 @@ public class Result<T> implements Serializable {
     private int code;
 
     /**
-     * 提示信息
+     * 描述信息
      */
     private String message;
 
@@ -48,7 +48,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应成功结果
      *
-     * @param message 提示信息
+     * @param message 描述信息
      * @param data    返回值
      * @param <T>     泛型
      * @return Result对象
@@ -71,7 +71,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应失败结果
      *
-     * @param message 提示信息
+     * @param message 描述信息
      * @param data    返回值
      * @param <T>     泛型
      * @return Result对象
@@ -81,7 +81,7 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 响应结果
+     * 响应通用结果
      *
      * @param status Status对象
      * @param data   返回值
@@ -93,15 +93,75 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 响应结果
+     * 响应通用结果
      *
      * @param code    状态码
-     * @param message 提示信息
+     * @param message 描述信息
      * @param data    返回值
      * @param <T>     泛型
      * @return Result对象
      */
     public static <T> Result<T> back(int code, String message, T data) {
         return new Result<>(code, message, data);
+    }
+
+    /**
+     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是失败
+     *
+     * @param data 返回值
+     * @return Result对象
+     */
+    public static Result<Boolean> retBool(Boolean data) {
+        if (data) {
+            return ok(true);
+        } else {
+            return fail(false);
+        }
+    }
+
+    /**
+     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是失败
+     *
+     * @param message 描述信息
+     * @param data    返回值
+     * @return Result对象
+     */
+    public static Result<Boolean> retBool(String message, Boolean data) {
+        if (data) {
+            return ok(message, true);
+        } else {
+            return fail(message, false);
+        }
+    }
+
+    /**
+     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是指定状态码
+     *
+     * @param status Status对象
+     * @param data   返回值
+     * @return Result对象
+     */
+    public static Result<Boolean> retBool(Status status, Boolean data) {
+        if (data) {
+            return ok(status.i18n, true);
+        } else {
+            return back(status, false);
+        }
+    }
+
+    /**
+     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是指定状态码
+     *
+     * @param code    状态码
+     * @param message 描述信息
+     * @param data    返回值
+     * @return Result对象
+     */
+    public static Result<Boolean> retBool(int code, String message, Boolean data) {
+        if (data) {
+            return ok(message, true);
+        } else {
+            return back(code, message, false);
+        }
     }
 }
