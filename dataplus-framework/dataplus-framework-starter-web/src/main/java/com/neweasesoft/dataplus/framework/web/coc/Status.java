@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.framework.common.coc.web;
+package com.neweasesoft.dataplus.framework.web.coc;
 
 import lombok.AllArgsConstructor;
 

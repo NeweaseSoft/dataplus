@@ -2,7 +2,7 @@ package com.neweasesoft.dataplus.datasource.controller;
 
 import com.neweasesoft.dataplus.datasource.entity.DataSourceType;
 import com.neweasesoft.dataplus.datasource.service.DataSourceTypeService;
-import com.neweasesoft.dataplus.framework.common.coc.web.Result;
+import com.neweasesoft.dataplus.framework.web.coc.Result;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

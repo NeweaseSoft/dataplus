@@ -1,4 +1,4 @@
-package com.neweasesoft.dataplus.framework.common.coc.web;
+package com.neweasesoft.dataplus.framework.web.coc;
 
 import com.neweasesoft.dataplus.framework.common.i18n.MessageUtil;
 import lombok.AccessLevel;
