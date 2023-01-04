@@ -1,6 +1,6 @@
-package com.neweasesoft.dataplus.framework.profile.autoconfigure;
+package com.neweasesoft.dataplus.framework.web.autoconfigure;
 
-import com.neweasesoft.dataplus.framework.profile.runner.BannerApplicationRunner;
+import com.neweasesoft.dataplus.framework.web.runner.BannerApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

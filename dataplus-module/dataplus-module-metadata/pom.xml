@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.neweasesoft</groupId>
-            <artifactId>dataplus-framework-starter-profile</artifactId>
+            <artifactId>dataplus-framework-starter-web</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
