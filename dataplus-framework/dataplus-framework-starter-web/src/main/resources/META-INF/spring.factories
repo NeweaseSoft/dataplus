@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.neweasesoft.dataplus.framework.web.autoconfigure.BannerAutoConfiguration
+  com.neweasesoft.dataplus.framework.web.autoconfigure.BannerAutoConfiguration,\
+  com.neweasesoft.dataplus.framework.web.autoconfigure.WebMvcAutoConfiguration

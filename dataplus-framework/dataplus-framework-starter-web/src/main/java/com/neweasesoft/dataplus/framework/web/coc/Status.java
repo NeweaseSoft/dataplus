@@ -1,5 +1,6 @@
 package com.neweasesoft.dataplus.framework.web.coc;
 
+import com.neweasesoft.dataplus.framework.web.i18n.MessageUtil;
 import lombok.AllArgsConstructor;
 
 /**
@@ -21,4 +22,8 @@ public enum Status {
      * 状态码对应的国际化名称
      */
     final String i18n;
+
+    public String getMessage() {
+        return MessageUtil.getMessage(Status.OK.i18n);
+    }
 }

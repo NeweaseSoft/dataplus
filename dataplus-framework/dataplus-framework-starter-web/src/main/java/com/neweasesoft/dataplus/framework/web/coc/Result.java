@@ -1,13 +1,12 @@
 package com.neweasesoft.dataplus.framework.web.coc;
 
-import com.neweasesoft.dataplus.framework.common.i18n.MessageUtil;
+import com.neweasesoft.dataplus.framework.web.i18n.MessageUtil;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 /**
  * 响应数据封装类
@@ -44,7 +43,7 @@ public class Result<T> implements Serializable {
      * @return Result对象
      */
     public static <T> Result<T> ok(T data) {
-        return new Result<>(Status.OK.code, MessageUtil.getMessage(Status.OK.i18n, Locale.SIMPLIFIED_CHINESE), data);
+        return new Result<>(Status.OK.code, MessageUtil.getMessage(Status.OK.i18n), data);
     }
 
     /**
@@ -67,7 +66,7 @@ public class Result<T> implements Serializable {
      * @return Result对象
      */
     public static <T> Result<T> fail(T data) {
-        return new Result<>(Status.FAIL.code, Status.FAIL.i18n, data);
+        return new Result<>(Status.FAIL.code, Status.FAIL.getMessage(), data);
     }
 
     /**
