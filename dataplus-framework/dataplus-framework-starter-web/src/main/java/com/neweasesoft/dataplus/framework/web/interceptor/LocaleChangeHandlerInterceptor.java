@@ -1,5 +1,6 @@
 package com.neweasesoft.dataplus.framework.web.interceptor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
@@ -17,6 +18,7 @@ import java.util.Objects;
  *
  * @author fushuwei
  */
+@Slf4j
 public class LocaleChangeHandlerInterceptor extends LocaleChangeInterceptor {
 
     @Override
@@ -28,7 +30,11 @@ public class LocaleChangeHandlerInterceptor extends LocaleChangeInterceptor {
         String newLocale = request.getHeader(getParamName());
         Locale locale = localeResolver.resolveLocale(request);
         if (newLocale != null && !newLocale.equalsIgnoreCase(locale.toString())) {
-            localeResolver.setLocale(request, response, StringUtils.parseLocaleString(newLocale));
+            try {
+                localeResolver.setLocale(request, response, StringUtils.parseLocaleString(newLocale));
+            } catch (Exception e) {
+                logger.error("设置国际化地区配置失败", e);
+            }
         }
         return true;
     }
