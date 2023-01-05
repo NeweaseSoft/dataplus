@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 /**
- * 国际化地区配置变更拦截器
+ * 国际化地区设置变更拦截器
  *
  * @author fushuwei
  */
 @Slf4j
-public class LocaleChangeHandlerInterceptor extends LocaleChangeInterceptor {
+public class DefaultLocaleChangeInterceptor extends LocaleChangeInterceptor {
 
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) {
@@ -32,7 +32,7 @@ public class LocaleChangeHandlerInterceptor extends LocaleChangeInterceptor {
             try {
                 localeResolver.setLocale(request, response, StringUtils.parseLocaleString(newLocale));
             } catch (Exception e) {
-                logger.error("设置国际化地区配置失败", e);
+                logger.error("修改国际化地区设置失败", e);
             }
         }
         return true;

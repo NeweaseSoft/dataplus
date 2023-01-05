@@ -1,6 +1,6 @@
 package com.neweasesoft.dataplus.framework.web.autoconfigure;
 
-import com.neweasesoft.dataplus.framework.web.interceptor.LocaleChangeHandlerInterceptor;
+import com.neweasesoft.dataplus.framework.web.interceptor.DefaultLocaleChangeInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.context.annotation.Bean;
@@ -61,7 +61,7 @@ public class WebMvcAutoConfiguration {
              */
             @Override
             public void addInterceptors(@NonNull InterceptorRegistry registry) {
-                registry.addInterceptor(new LocaleChangeHandlerInterceptor());
+                registry.addInterceptor(new DefaultLocaleChangeInterceptor());
             }
         };
     }
