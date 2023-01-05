@@ -23,7 +23,43 @@ public enum Status {
      */
     final String i18n;
 
+    /**
+     * 获取国际化翻译
+     *
+     * @return 翻译值
+     */
     public String getMessage() {
         return MessageUtils.getMessage(Status.OK.i18n);
+    }
+
+    /**
+     * 获取国际化翻译
+     *
+     * @param defaultMessage 默认值
+     * @return 翻译值
+     */
+    public String getMessage(String defaultMessage) {
+        return MessageUtils.getMessage(Status.OK.i18n, defaultMessage);
+    }
+
+    /**
+     * 获取国际化翻译
+     *
+     * @param args 参数
+     * @return 翻译值
+     */
+    public String getMessage(Object[] args) {
+        return MessageUtils.getMessage(Status.OK.i18n, args);
+    }
+
+    /**
+     * 获取国际化翻译
+     *
+     * @param args           参数
+     * @param defaultMessage 默认值
+     * @return 翻译值
+     */
+    public String getMessage(Object[] args, String defaultMessage) {
+        return MessageUtils.getMessage(Status.OK.i18n, args, defaultMessage);
     }
 }
