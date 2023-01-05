@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum Status {
     OK(10000, "result.message.ok"),
+    OK_SAVE(10000, "result.message.ok_save"),
+    OK_UPDATE(10000, "result.message.ok_update"),
+    OK_DELETE(10000, "result.message.ok_delete"),
     FAIL(99999, "result.message.fail");
 
     /**
@@ -29,7 +32,7 @@ public enum Status {
      * @return 翻译值
      */
     public String getMessage() {
-        return MessageUtils.getMessage(Status.OK.i18n);
+        return MessageUtils.getMessage(i18n);
     }
 
     /**
@@ -39,7 +42,7 @@ public enum Status {
      * @return 翻译值
      */
     public String getMessage(String defaultMessage) {
-        return MessageUtils.getMessage(Status.OK.i18n, defaultMessage);
+        return MessageUtils.getMessage(i18n, defaultMessage);
     }
 
     /**
@@ -49,7 +52,7 @@ public enum Status {
      * @return 翻译值
      */
     public String getMessage(Object[] args) {
-        return MessageUtils.getMessage(Status.OK.i18n, args);
+        return MessageUtils.getMessage(i18n, args);
     }
 
     /**
@@ -60,6 +63,6 @@ public enum Status {
      * @return 翻译值
      */
     public String getMessage(Object[] args, String defaultMessage) {
-        return MessageUtils.getMessage(Status.OK.i18n, args, defaultMessage);
+        return MessageUtils.getMessage(i18n, args, defaultMessage);
     }
 }
