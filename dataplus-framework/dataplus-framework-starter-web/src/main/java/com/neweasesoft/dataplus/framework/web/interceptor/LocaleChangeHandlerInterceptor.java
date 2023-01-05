@@ -11,7 +11,6 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
  * 国际化地区配置变更拦截器
@@ -42,7 +41,11 @@ public class LocaleChangeHandlerInterceptor extends LocaleChangeInterceptor {
     @Override
     public void postHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler, ModelAndView modelAndView) {
         if (null != modelAndView) {
-            Locale locale = Objects.requireNonNull(RequestContextUtils.getLocaleResolver(request)).resolveLocale(request);
+            LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+            if (localeResolver == null) {
+                throw new IllegalStateException("No LocaleResolver found: not in a DispatcherServlet request?");
+            }
+            Locale locale = localeResolver.resolveLocale(request);
             modelAndView.setViewName(locale + "/" + modelAndView.getViewName());
         }
     }

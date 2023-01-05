@@ -13,10 +13,9 @@ import java.util.Locale;
  */
 public class MessageUtil {
 
-    private static final ResourceBundleMessageSource messageSource;
+    private static final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 
     static {
-        messageSource = new ResourceBundleMessageSource();
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         messageSource.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
         messageSource.setBasenames("i18n/messages");
