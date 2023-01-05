@@ -1,12 +1,15 @@
 package com.neweasesoft.dataplus.framework.web.autoconfigure;
 
 import com.neweasesoft.dataplus.framework.web.interceptor.LocaleChangeHandlerInterceptor;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
@@ -16,6 +19,7 @@ import java.util.Locale;
  * @author fushuwei
  */
 @Configuration
+@AutoConfigureBefore({org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.class})
 public class WebMvcAutoConfiguration {
 
     /**
@@ -28,6 +32,18 @@ public class WebMvcAutoConfiguration {
         WebProperties webProperties = new WebProperties();
         webProperties.setLocale(Locale.SIMPLIFIED_CHINESE);
         return webProperties;
+    }
+
+    /**
+     * 国际化区域设置解析器
+     *
+     * @return LocaleResolver
+     */
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+        return localeResolver;
     }
 
     /**
