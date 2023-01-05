@@ -129,6 +129,12 @@
         </filter>
     </appender>
 
+    <!-- 设置 dev 和 test 环境输出SQL日志 -->
+    <springProfile name="dev,test">
+        <logger name="com.baomidou.mybatisplus" level="debug"/>
+        <logger name="com.neweasesoft.dataplus" level="debug"/>
+    </springProfile>
+
     <!-- 定义日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
