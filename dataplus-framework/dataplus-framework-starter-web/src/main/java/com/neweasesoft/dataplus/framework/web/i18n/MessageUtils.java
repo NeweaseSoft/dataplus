@@ -11,7 +11,7 @@ import java.util.Locale;
  *
  * @author fushuwei
  */
-public class MessageUtil {
+public class MessageUtils {
 
     private static final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 

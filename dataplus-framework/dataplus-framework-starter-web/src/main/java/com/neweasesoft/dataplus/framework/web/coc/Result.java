@@ -1,6 +1,6 @@
 package com.neweasesoft.dataplus.framework.web.coc;
 
-import com.neweasesoft.dataplus.framework.web.i18n.MessageUtil;
+import com.neweasesoft.dataplus.framework.web.i18n.MessageUtils;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,7 +43,7 @@ public class Result<T> implements Serializable {
      * @return Result对象
      */
     public static <T> Result<T> ok(T data) {
-        return new Result<>(Status.OK.code, MessageUtil.getMessage(Status.OK.i18n), data);
+        return new Result<>(Status.OK.code, MessageUtils.getMessage(Status.OK.i18n), data);
     }
 
     /**

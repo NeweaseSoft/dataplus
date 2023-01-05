@@ -1,6 +1,6 @@
 package com.neweasesoft.dataplus.framework.web.coc;
 
-import com.neweasesoft.dataplus.framework.web.i18n.MessageUtil;
+import com.neweasesoft.dataplus.framework.web.i18n.MessageUtils;
 import lombok.AllArgsConstructor;
 
 /**
@@ -24,6 +24,6 @@ public enum Status {
     final String i18n;
 
     public String getMessage() {
-        return MessageUtil.getMessage(Status.OK.i18n);
+        return MessageUtils.getMessage(Status.OK.i18n);
     }
 }
