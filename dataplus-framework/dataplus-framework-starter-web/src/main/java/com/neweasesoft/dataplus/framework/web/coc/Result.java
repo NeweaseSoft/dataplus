@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * 响应数据封装类
+ * 响应结果封装类
  *
  * @author fushuwei
  */
@@ -25,19 +25,19 @@ public class Result<T> implements Serializable {
     private int code;
 
     /**
-     * 描述信息
+     * 返回消息
      */
     private String message;
 
     /**
-     * 响应数据
+     * 返回数据
      */
     private T data;
 
     /**
      * 响应自定义结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param <T>    泛型
      * @return Result对象
@@ -49,7 +49,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应自定义结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param args   参数
      * @param <T>    泛型
@@ -62,9 +62,9 @@ public class Result<T> implements Serializable {
     /**
      * 响应自定义结果
      *
-     * @param data    返回值
+     * @param data    返回数据
      * @param code    状态码
-     * @param message 描述信息
+     * @param message 返回消息
      * @param <T>     泛型
      * @return Result对象
      */
@@ -75,7 +75,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应成功结果
      *
-     * @param data 返回值
+     * @param data 返回数据
      * @param <T>  泛型
      * @return Result对象
      */
@@ -86,7 +86,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应成功结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param <T>    泛型
      * @return Result对象
@@ -98,7 +98,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应成功结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param args   参数
      * @param <T>    泛型
@@ -111,7 +111,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应失败结果
      *
-     * @param data 返回值
+     * @param data 返回数据
      * @param <T>  泛型
      * @return Result对象
      */
@@ -122,7 +122,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应失败结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param <T>    泛型
      * @return Result对象
@@ -134,7 +134,7 @@ public class Result<T> implements Serializable {
     /**
      * 响应失败结果
      *
-     * @param data   返回值
+     * @param data   返回数据
      * @param status Status对象
      * @param args   参数
      * @param <T>    泛型
@@ -145,9 +145,9 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是失败
+     * 返回布尔结果
      *
-     * @param data       返回值
+     * @param data       返回数据
      * @param okStatus   成功状态码
      * @param failStatus 失败状态码
      * @return Result对象
@@ -161,9 +161,9 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 返回布尔结果, 基于布尔类型的返回值判断状态码是成功还是失败
+     * 返回布尔结果
      *
-     * @param data       返回值
+     * @param data       返回数据
      * @param okStatus   成功状态码
      * @param okArgs     参数
      * @param failStatus 失败状态码
