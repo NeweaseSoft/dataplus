@@ -1,8 +1,11 @@
 package com.neweasesoft.dataplus.datasource.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.neweasesoft.dataplus.datasource.entity.DataSourceType;
 import com.neweasesoft.dataplus.datasource.service.DataSourceTypeService;
 import com.neweasesoft.dataplus.framework.web.coc.Result;
+import com.neweasesoft.dataplus.framework.web.coc.Status;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +37,11 @@ public class DataSourceTypeController {
         return Result.ok(dataSourceTypeService.list());
     }
 
+    @GetMapping("page")
+    public Result<IPage<DataSourceType>> page(Page<DataSourceType> page) {
+        return Result.ok(dataSourceTypeService.page(page));
+    }
+
     /**
      * 保存
      *
@@ -41,7 +49,7 @@ public class DataSourceTypeController {
      */
     @GetMapping("/save")
     public Result<Boolean> save() {
-        return Result.retBool(dataSourceTypeService.save(new DataSourceType().setName("张三")));
+        return Result.retBool(dataSourceTypeService.save(new DataSourceType().setName("张三")), Status.OK_SAVE, Status.FAIL_SAVE);
     }
 
     /**
@@ -54,7 +62,7 @@ public class DataSourceTypeController {
     public Result<Boolean> update(String id) {
         DataSourceType dataSourceType = dataSourceTypeService.getById(id);
         dataSourceType.setName("李四").setRemark("test");
-        return Result.retBool(dataSourceTypeService.updateById(dataSourceType));
+        return Result.retBool(dataSourceTypeService.updateById(dataSourceType), Status.OK_UPDATE, Status.FAIL_UPDATE);
     }
 
     /**
@@ -65,6 +73,6 @@ public class DataSourceTypeController {
      */
     @GetMapping("/delete")
     public Result<Boolean> delete(String id) {
-        return Result.retBool(dataSourceTypeService.removeById(id));
+        return Result.retBool(dataSourceTypeService.removeById(id), Status.OK_DELETE, Status.FAIL_DELETE);
     }
 }
