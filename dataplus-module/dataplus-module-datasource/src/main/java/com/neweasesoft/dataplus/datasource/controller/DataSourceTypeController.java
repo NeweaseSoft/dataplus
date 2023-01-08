@@ -2,7 +2,7 @@ package com.neweasesoft.dataplus.datasource.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.neweasesoft.dataplus.datasource.entity.DataSourceType;
+import com.neweasesoft.dataplus.datasource.domain.DataSourceType;
 import com.neweasesoft.dataplus.datasource.service.DataSourceTypeService;
 import com.neweasesoft.dataplus.framework.web.coc.Result;
 import com.neweasesoft.dataplus.framework.web.coc.Status;

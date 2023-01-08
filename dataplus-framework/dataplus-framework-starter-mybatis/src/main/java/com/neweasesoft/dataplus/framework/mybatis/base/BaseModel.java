@@ -15,7 +15,7 @@ import java.util.Date;
  * @author fushuwei
  */
 @Data
-public class BaseEntity<T extends Model<?>> extends Model<T> {
+public class BaseModel<T extends Model<?>> extends Model<T> {
 
     /**
      * 主键Id

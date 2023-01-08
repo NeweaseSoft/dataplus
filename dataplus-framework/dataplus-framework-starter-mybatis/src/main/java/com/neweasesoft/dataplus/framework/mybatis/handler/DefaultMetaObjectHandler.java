@@ -1,7 +1,7 @@
 package com.neweasesoft.dataplus.framework.mybatis.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.neweasesoft.dataplus.framework.mybatis.base.BaseEntity;
+import com.neweasesoft.dataplus.framework.mybatis.base.BaseModel;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.Date;
@@ -17,34 +17,34 @@ public class DefaultMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         // 判断新增对象是否为空, 且类型是否正确
-        if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BaseEntity) {
+        if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BaseModel) {
             // 获取当前操作数据
-            BaseEntity<?> baseEntity = (BaseEntity<?>) metaObject.getOriginalObject();
+            BaseModel<?> baseModel = (BaseModel<?>) metaObject.getOriginalObject();
 
             // 获取当前登录用户的Id
             String userId = null;
 
             // 如果创建人为空, 则使用当前登录用户的Id填充
-            if (Objects.nonNull(userId) && Objects.isNull(baseEntity.getCreateBy())) {
-                baseEntity.setCreateBy(userId);
+            if (Objects.nonNull(userId) && Objects.isNull(baseModel.getCreateBy())) {
+                baseModel.setCreateBy(userId);
             }
 
             // 如果更新人为空, 则使用当前登录用户的Id填充
-            if (Objects.nonNull(userId) && Objects.isNull(baseEntity.getUpdateBy())) {
-                baseEntity.setUpdateBy(userId);
+            if (Objects.nonNull(userId) && Objects.isNull(baseModel.getUpdateBy())) {
+                baseModel.setUpdateBy(userId);
             }
 
             // 获取当前系统时间
             Date date = new Date();
 
             // 如果创建时间为空, 则使用当前时间填充
-            if (Objects.isNull(baseEntity.getCreateTime())) {
-                baseEntity.setCreateTime(date);
+            if (Objects.isNull(baseModel.getCreateTime())) {
+                baseModel.setCreateTime(date);
             }
 
             // 如果更新时间为空, 则使用当前时间填充
-            if (Objects.isNull(baseEntity.getUpdateTime())) {
-                baseEntity.setUpdateTime(date);
+            if (Objects.isNull(baseModel.getUpdateTime())) {
+                baseModel.setUpdateTime(date);
             }
         }
     }
